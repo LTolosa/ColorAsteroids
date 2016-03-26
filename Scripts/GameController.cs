@@ -8,13 +8,14 @@ public class GameController : MonoBehaviour {
     public GameObject asteroids;
     public int hazardCount;
 
-    public static float spawnDistance = 25f;
+    public static float spawnDistance = 50f;
 
     public float startWait;
     public float spawnWait;
     public float waveWait;
 
     public static bool startWave = true;
+    public static int numOfAsteroids = 0;
 
 	// Use this for initialization
 	void Start () {
