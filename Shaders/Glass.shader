@@ -1,41 +1,45 @@
 ﻿Shader "Custom/Glass" {
-	Properties {
-		_Color ("Color", Color) = (1,1,1,1)
-		_MainTex ("Albedo (RGB)", 2D) = "white" {}
-		_Glossiness ("Smoothness", Range(0,1)) = 0.5
-		_Metallic ("Metallic", Range(0,1)) = 0.0
-	}
-	SubShader {
-		Tags { "RenderType"="Opaque" }
-		LOD 200
-		
-		CGPROGRAM
-		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows
+    Properties {
+        _Color ("Main Color", Color) = (1,1,1,0)
+        _SpecColor ("Spec Color", Color) = (1,1,1,1)
+        _Emission ("Emmisive Color", Color) = (0,0,0,0)
+        _Shininess ("Shininess", Range (0.01, 1)) = 0.7
+        _MainTex ("Base (RGB)", 2D) = "white" { }
+    }
 
-		// Use shader model 3.0 target, to get nicer looking lighting
-		#pragma target 3.0
+    SubShader {
+        // We use the material in many passes by defining them in the subshader.
+        // Anything defined here becomes default values for all contained passes.
+        Material {
+            Diffuse [_Color]
+            Ambient [_Color]
+            Shininess [_Shininess]
+            Specular [_SpecColor]
+            Emission [_Emission]
+        }
+        Lighting On
+        SeparateSpecular On
 
-		sampler2D _MainTex;
+        // Set up alpha blending
+        Blend SrcAlpha OneMinusSrcAlpha
 
-		struct Input {
-			float2 uv_MainTex;
-		};
-
-		half _Glossiness;
-		half _Metallic;
-		fixed4 _Color;
-
-		void surf (Input IN, inout SurfaceOutputStandard o) {
-			// Albedo comes from a texture tinted by color
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-			o.Albedo = c.rgb;
-			// Metallic and smoothness come from slider variables
-			o.Metallic = _Metallic;
-			o.Smoothness = _Glossiness;
-			o.Alpha = c.a;
-		}
-		ENDCG
-	}
-	FallBack "Diffuse"
+        // Render the back facing parts of the object.
+        // If the object is convex, these will always be further away
+        // than the front-faces.
+        Pass {
+            Cull Front
+            SetTexture [_MainTex] {
+                Combine Primary * Texture
+            }
+        }
+        // Render the parts of the object facing us.
+        // If the object is convex, these will be closer than the
+        // back-faces.
+        Pass {
+            Cull Off
+            SetTexture [_MainTex] {
+                Combine Primary * Texture
+            }
+        }
+    }
 }

@@ -1,0 +1,178 @@
+fileFormatVersion: 2
+guid: e17a33e0acef14be683b13c506f95c14
+timeCreated: 1459018043
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: 3D_Object_2
+    100004: all_1st_cockpit_xw
+    100006: amp
+    100008: cockpitframe
+    100010: cockpitwin1
+    100012: cockpitwin2
+    100014: cockpitwin3
+    100016: lightfx1
+    100018: lightfx2
+    100020: lightfx3
+    100022: lightfx4
+    100024: lightfx5
+    100026: lightfx6
+    100028: lightfx7
+    100030: lightfx8
+    100032: radar1
+    100034: shifter2
+    100036: tach
+    100038: tubelong
+    100040: wire1
+    100042: wire2
+    400000: //RootNode
+    400002: 3D_Object_2
+    400004: all_1st_cockpit_xw
+    400006: amp
+    400008: cockpitframe
+    400010: cockpitwin1
+    400012: cockpitwin2
+    400014: cockpitwin3
+    400016: lightfx1
+    400018: lightfx2
+    400020: lightfx3
+    400022: lightfx4
+    400024: lightfx5
+    400026: lightfx6
+    400028: lightfx7
+    400030: lightfx8
+    400032: radar1
+    400034: shifter2
+    400036: tach
+    400038: tubelong
+    400040: wire1
+    400042: wire2
+    2300000: 3D_Object_2
+    2300002: all_1st_cockpit_xw
+    2300004: amp
+    2300006: cockpitframe
+    2300008: cockpitwin1
+    2300010: cockpitwin2
+    2300012: cockpitwin3
+    2300014: lightfx1
+    2300016: lightfx2
+    2300018: lightfx3
+    2300020: lightfx4
+    2300022: lightfx5
+    2300024: lightfx6
+    2300026: lightfx7
+    2300028: lightfx8
+    2300030: radar1
+    2300032: shifter2
+    2300034: tach
+    2300036: tubelong
+    2300038: wire1
+    2300040: wire2
+    3300000: 3D_Object_2
+    3300002: all_1st_cockpit_xw
+    3300004: amp
+    3300006: cockpitframe
+    3300008: cockpitwin1
+    3300010: cockpitwin2
+    3300012: cockpitwin3
+    3300014: lightfx1
+    3300016: lightfx2
+    3300018: lightfx3
+    3300020: lightfx4
+    3300022: lightfx5
+    3300024: lightfx6
+    3300026: lightfx7
+    3300028: lightfx8
+    3300030: radar1
+    3300032: shifter2
+    3300034: tach
+    3300036: tubelong
+    3300038: wire1
+    3300040: wire2
+    4300000: 3D_Object_2
+    4300002: all_1st_cockpit_xw
+    4300004: amp
+    4300006: cockpitframe
+    4300008: cockpitwin1
+    4300010: cockpitwin2
+    4300012: cockpitwin3
+    4300014: lightfx1
+    4300016: lightfx2
+    4300018: lightfx3
+    4300020: lightfx4
+    4300022: lightfx5
+    4300024: lightfx6
+    4300026: lightfx7
+    4300028: lightfx8
+    4300030: radar1
+    4300032: shifter2
+    4300034: tach
+    4300036: tubelong
+    4300038: wire1
+    4300040: wire2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
