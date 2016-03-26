@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveLaser : MonoBehaviour {
 
-    public float speed = 300f;
+    public float speed = 200f;
 
     private Vector3 startpos;
     private Rigidbody rb;

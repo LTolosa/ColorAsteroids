@@ -53,7 +53,7 @@ public class Asteroid : MonoBehaviour {
                 r_Asteroid.GetComponent<Rigidbody>().velocity = r_Asteroid.transform.forward * speed / 2;
                 l_Asteroid.GetComponent<Asteroid>().type++;
                 r_Asteroid.GetComponent<Asteroid>().type++;
-                GameController.numOfAsteroids += 2;
+                GameController.numOfAsteroids++;
             }
             GameController.numOfAsteroids--;
             Destroy(other.gameObject);
