@@ -15,6 +15,7 @@ public class Asteroid : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GetComponent<Rigidbody>().angularVelocity = Random.insideUnitSphere * 5;
         if (type == 1)
         {
             player = GameObject.Find("OVRCameraRig").transform;
