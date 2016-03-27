@@ -5,6 +5,7 @@ public class Asteroid : MonoBehaviour {
     private Transform player;
     public GameObject smallAsteroids;
     public float speed = 1f;
+    public ParticleSystem explosion;
 
     public int type = 1;
 
@@ -36,7 +37,6 @@ public class Asteroid : MonoBehaviour {
         {
             this.transform.position -= 2 * transform.position;
         }
-
 	}
 
     
@@ -44,6 +44,7 @@ public class Asteroid : MonoBehaviour {
     {
         if (other.CompareTag("Shot"))
         {
+            Destroy(other.gameObject);
             if (type == 1)
             {
                 GameObject l_Asteroid = Instantiate(smallAsteroids, this.transform.position, this.transform.rotation) as GameObject;
@@ -57,16 +58,16 @@ public class Asteroid : MonoBehaviour {
                 GameController.numOfAsteroids++;
             }
             GameController.numOfAsteroids--;
-            Destroy(other.gameObject);
-            Destroy(this.gameObject);
-            
-        }
 
+            ParticleSystem newExplosion = Instantiate<ParticleSystem>(explosion);
+            newExplosion.transform.position = transform.position;
+            GameController.AddExplosion(newExplosion);
+
+            Destroy(this.gameObject);
+        }
         else
         {
             return;
         }
     }
-   
-
 }

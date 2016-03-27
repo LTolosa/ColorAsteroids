@@ -13,11 +13,12 @@ public class Flashy : MonoBehaviour
 
     private Texture2D _texture;
     private Color32[] _colors;
-    private const int _height = 256;
-    private const int _width = 256;
+    private const int _height = 128;
+    private const int _width = 128;
     private const int _size = _height * _width;
 
     private List<Vector2[]> _linePositions;
+    private Vector2[] _dirs;
 
     private float _time = 0;
 
@@ -36,21 +37,34 @@ public class Flashy : MonoBehaviour
         material.mainTexture = _texture;
 
         _linePositions = new List<Vector2[]>();
+        _dirs = new Vector2[numLines];
+        for (int i = 0; i < numLines; i++)
+        {
+            float angle = Mathf.PI * 2 * i / numLines;
+            _dirs[i] = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        }
+
+        _time = period;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        DefaultAnimation();
+	}
+
+    void DefaultAnimation()
+    {
         int startX = _width / 2;
         int startY = _height / 2;
 
         _time += Time.deltaTime;
-        if(_time > period)
+        if (_time > period)
         {
             _time -= period;
 
             Vector2[] lines = new Vector2[numLines];
-            for(int i = 0; i < numLines; i++)
+            for (int i = 0; i < numLines; i++)
             {
                 lines[i].x = startX;
                 lines[i].y = startY;
@@ -61,22 +75,22 @@ public class Flashy : MonoBehaviour
         for (int i = 0; i < _size; i++)
             _colors[i] = bgColor;
 
-        bool linesDrawn = false;
-        for(int l = 0; l < _linePositions.Count; l++)
+        for (int l = 0; l < _linePositions.Count; l++)
         {
             Vector2[] lines = _linePositions[l];
 
+            bool linesDrawn = false;
             for (int i = 0; i < numLines; i++)
             {
                 float angle = (float)i / numLines * 2 * Mathf.PI;
-                float xDir = Mathf.Cos(angle);
-                float yDir = Mathf.Sin(angle);
+                float xDir = _dirs[i].x;
+                float yDir = _dirs[i].y;
 
                 for (int j = 0; j < lineLength; j++)
                 {
                     float newX = lines[i].x + j * xDir;
                     float newY = lines[i].y + j * yDir;
-                    if (Mathf.Abs(newX) < 2 * _width && Mathf.Abs(newY) < 2 * _height)
+                    if (Mathf.Abs(newX) < _width && Mathf.Abs(newY) < _height)
                     {
                         _colors[toPos(newX, newY)] = lineColor;
                         linesDrawn = true;
@@ -85,13 +99,16 @@ public class Flashy : MonoBehaviour
                 lines[i].x = lines[i].x + xDir * speed * Time.deltaTime;
                 lines[i].y = lines[i].y + yDir * speed * Time.deltaTime;
             }
+            if (!linesDrawn)
+            {
+                _linePositions.RemoveAt(l);
+                l--;
+            }
         }
-        if (!linesDrawn && _linePositions.Count > 0)
-            _linePositions.RemoveAt(0);
 
         _texture.SetPixels32(_colors);
         _texture.Apply();
-	}
+    }
 
     private int toPos(float x, float y)
     {
