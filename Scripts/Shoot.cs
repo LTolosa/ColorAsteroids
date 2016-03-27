@@ -21,6 +21,7 @@ public class Shoot : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) && shotTime + DELAY_TIME  < Time.time)
         {
+            GetComponent<AudioSource>().Play();
             shotTime = Time.time;
 
             GameObject laser = Instantiate(linePrefab, laserOrigin.position,
