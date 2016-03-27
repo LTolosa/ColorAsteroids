@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour {
     public GameObject asteroids;
     public int hazardCount;
 
-    public static float spawnDistance = 50f;
+    public static float spawnDistance = 100f;
 
     public float startWait;
     public float spawnWait;
@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour {
 	void Start () {
         StartCoroutine(SpawnWaves());
 	}
-	
+
 	IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);

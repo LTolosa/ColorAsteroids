@@ -51,9 +51,9 @@ public class Asteroid : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Vector3 otherPoint = Random.insideUnitSphere * GameController.spawnDistance;
-        //this.transform.LookAt(otherPoint);
+        this.transform.LookAt(otherPoint);
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
-        
+
         if(type == 1)
         {
             int randColor = Random.Range(0, 3);
@@ -61,7 +61,7 @@ public class Asteroid : MonoBehaviour {
 
             color = this.GetComponent<Flashy>().lineColor;
         }
-       
+
     }
 
     // Update is called once per frame
@@ -72,14 +72,14 @@ public class Asteroid : MonoBehaviour {
         }
 	}
 
-    
+
     void OnCollisionEnter(Collision collision)
     {
         GetComponent<AudioSource>().Play();
         Collider other = collision.collider;
         if (other.CompareTag("Shot"))
         {
-           
+
             if (type == 1 || type == 3)
             {
                 Health.score++;
@@ -94,7 +94,7 @@ public class Asteroid : MonoBehaviour {
                     l_Asteroid.GetComponent<Asteroid>().type++;
                     r_Asteroid.GetComponent<Asteroid>().type++;
                     GameController.numOfAsteroids += 2;
-                    
+
 
                     r_Asteroid.GetComponent<Flashy>().lineColor = secondaryColors_B[color]._color1;
                     l_Asteroid.GetComponent<Flashy>().lineColor = secondaryColors_B[color]._color2;
@@ -135,12 +135,12 @@ public class Asteroid : MonoBehaviour {
             this.GetComponent<Collider>().enabled = false;
             Destroy(other.gameObject);
             Destroy(this.gameObject);
-            
+
         }
         else if (other.CompareTag("Asteroid")){
             ColorPair colorPair = new ColorPair(color, other.GetComponent<Asteroid>().color);
 
-            if (secondaryColors.ContainsKey(colorPair)) { 
+            if (secondaryColors.ContainsKey(colorPair)) {
                 GameObject child = Instantiate(bigAsteroids, other.transform.position, other.transform.rotation) as GameObject;
                 child.GetComponent<Asteroid>().type = 3;
                 child.GetComponent<Asteroid>().color = secondaryColors[colorPair];
@@ -150,7 +150,7 @@ public class Asteroid : MonoBehaviour {
                 GameController.numOfAsteroids--;
                 Destroy(other.gameObject);
                 Destroy(this.gameObject);
-               
+
             }
             else return;
         }
