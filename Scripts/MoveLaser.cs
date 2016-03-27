@@ -19,7 +19,7 @@ public class MoveLaser : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(rb.position, startpos) > GameController.spawnDistance) {
+        if (Vector3.Distance(rb.position, startpos) > 2 * GameController.spawnDistance) {
             Destroy(this.gameObject);
         }
 	}
