@@ -17,9 +17,9 @@ public class Health : MonoBehaviour {
     private float t = 1.0f;
 	// Use this for initialization
 	void Start () {
-	    
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
         display.text = health + " <color=#72cae8ff>HP</color>";

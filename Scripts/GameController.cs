@@ -62,6 +62,10 @@ public class GameController : MonoBehaviour {
         if(Health.health <= 0)
         {
             StopCoroutine(SpawnWaves());
+            GameObject[] tmp = GameObject.FindGameObjectsWithTag("Asteroid");
+            foreach(GameObject a in tmp){
+                Destroy(a);
+            }
             Color c = endgame.color;
             c.a = 1;
             endgame.color = c;
