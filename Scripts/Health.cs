@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Health : MonoBehaviour {
 
-    public float health = 100f;
+    public static float health = 100f;
     public static int score = 0;
 
     public Text scoreText;
@@ -22,8 +22,8 @@ public class Health : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        display.text = health + " HP";
-        scoreText.text = "Score: " + score;
+        display.text = health + " <color=#72cae8ff>HP</color>";
+        scoreText.text = score + " <color=#72cae8ff>Hits</color>";
         sphere.GetComponent<Renderer>().material.SetColor("_TintColor", Color.Lerp(Color.red, Color.black, t));
 
         t += Time.deltaTime;
@@ -37,7 +37,7 @@ public class Health : MonoBehaviour {
     {
         if (other.CompareTag("Asteroid"))
         {
-            health -= 2f;
+            health -= 10f;
             t = 0.0f;
             sources[0].Play();
             sphere.GetComponent<Renderer>().material.color = Color.red;

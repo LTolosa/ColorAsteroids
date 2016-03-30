@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,16 +9,19 @@ public class GameController : MonoBehaviour {
     public GameObject player;
 
     public GameObject asteroids;
+    public Text waveCount;
+    public Text endgame;
     public int hazardCount;
 
-    public static float spawnDistance = 150f;
+    public static float spawnDistance = 100f;
 
     public float startWait;
     public float spawnWait;
-    public float waveWait;
     public float explosionDuration = 1f;
 
     public static int numOfAsteroids = 0;
+
+    private int waveNum = 1;
 
     private static Queue<ParticleSystem> explosions = new Queue<ParticleSystem>();
     private static Queue<float> explosionTimes = new Queue<float>();
@@ -34,6 +39,7 @@ public class GameController : MonoBehaviour {
     {
         yield return new WaitForSeconds(startWait);
         while (true) {
+            waveCount.text = "<color=#72cae8ff>Wave</color> " + waveNum++;
             GameController.numOfAsteroids = 0;
             for (int i = 0; i < hazardCount; i++)
             {
@@ -43,7 +49,7 @@ public class GameController : MonoBehaviour {
                 GameObject asteroid = Instantiate(asteroids, spawnPosition, spawnRotation) as GameObject;
                 yield return new WaitForSeconds(spawnWait);
             }
-
+            hazardCount++;
             while (GameController.numOfAsteroids != 0)
                 yield return null;
         }
@@ -53,6 +59,19 @@ public class GameController : MonoBehaviour {
     void Update()
     {
         ManageExplosions();
+        if(Health.health <= 0)
+        {
+            StopCoroutine(SpawnWaves());
+            Color c = endgame.color;
+            c.a = 1;
+            endgame.color = c;
+            if (Input.GetMouseButtonDown(0))
+            {
+                SceneManager.LoadScene(0);
+                Health.health = 100f;
+                Health.score = 0;
+            }
+        }
     }
 
     public static void AddExplosion(ParticleSystem explosion)
